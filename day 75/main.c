@@ -1,15 +1,26 @@
-//
-//  main.c
-//  day 75
-//
-//  Created by Sanaa Kumar on 26/11/25.
-//
-
-#include <stdlib.h>
 #include <stdio.h>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    printf("Hello, World!\n");
-    return EXIT_SUCCESS;
+int main(void) {
+    char filename[100], text[200];
+    FILE *fp;
+
+    printf("Enter filename: ");
+    scanf("%s", filename);
+
+    fp = fopen(filename, "a");
+    if(fp == NULL) {
+        printf("Unable to open file\n");
+        return 0;
+    }
+
+    getchar();
+    printf("Enter text to append: ");
+    fgets(text, sizeof(text), stdin);
+
+    fputs(text, fp);
+
+    fclose(fp);
+    printf("Text appended successfully.\n");
+    return 0;
 }
+
